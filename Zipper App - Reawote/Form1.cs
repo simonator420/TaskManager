@@ -51,29 +51,36 @@ namespace Zipper_App___Reawote
         // čudlík, pro vybrání cesty ke zkopírování složek a souborů bez složky SOURCE
         private void button2_Click(object sender, EventArgs e)
         {
-            // vytvoření průzkumníka souborů
-            using (var dialog = new CommonOpenFileDialog())
+            if (selectedFolderPaths == null || selectedFolderPaths.Count == 0)
             {
-                dialog.IsFolderPicker= true;
-                dialog.Multiselect = false;
-                // po stisknutí tlačítka pro potvrzení cesty
-                if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+                MessageBox.Show("Nebyly vybrány žádné soubory.", "Chyba");
+            }
+            else
+            {
+                // vytvoření průzkumníka souborů
+                using (var dialog = new CommonOpenFileDialog())
                 {
-                    // se uloží vybraná cesta do proměnné destinationPath
-                    string destinationPath = dialog.FileName;
-                    // procházení všech složek uložených v listu
-                    foreach (string folderPath in selectedFolderPaths)
+                    dialog.IsFolderPicker= true;
+                    dialog.Multiselect = false;
+                    // po stisknutí tlačítka pro potvrzení cesty
+                    if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
                     {
-                        // získání jména složky
-                        string folderName = new DirectoryInfo(folderPath).Name;
-                        // vytvoření cesty pro finální složku
-                        string destinationFolderPath = Path.Combine(destinationPath, folderName);
-                        // volání fuknce pro zkopírování složky
-                        CopyDirectory(folderPath, destinationFolderPath);
+                        // se uloží vybraná cesta do proměnné destinationPath
+                        string destinationPath = dialog.FileName;
+                        // procházení všech složek uložených v listu
+                        foreach (string folderPath in selectedFolderPaths)
+                        {
+                            // získání jména složky
+                            string folderName = new DirectoryInfo(folderPath).Name;
+                            // vytvoření cesty pro finální složku
+                            string destinationFolderPath = Path.Combine(destinationPath, folderName);
+                            // volání fuknce pro zkopírování složky
+                            CopyDirectory(folderPath, destinationFolderPath);
+                        }
                     }
+                    MessageBox.Show("Operace dokončena!", "Hotovo");
                 }
             }
-            MessageBox.Show("Operace dokončena!", "Hotovo");
         }
 
         // funkce pro zkopírování všech souborů a složek kromě SOURCE složky pomocí rekurze
@@ -417,10 +424,17 @@ namespace Zipper_App___Reawote
 
         private void ZAZIPUJ_HDR_Click(object sender, EventArgs e)
         {
-            ZipHDRFile();
-            if (MessageBox.Show("Operace byla dokončena!", "Hotovo", MessageBoxButtons.OK) == DialogResult.OK)
+            if (selectedFolderPaths == null || selectedFolderPaths.Count == 0)
             {
-                Application.Restart();
+                MessageBox.Show("Nebyly vybrány žádné soubory.");
+            }
+            else
+            {
+                ZipHDRFile();
+                if (MessageBox.Show("Operace byla dokončena!", "Hotovo", MessageBoxButtons.OK) == DialogResult.OK)
+                {
+                    Application.Restart();
+                }
             }
         }
 
