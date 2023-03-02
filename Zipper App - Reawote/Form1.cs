@@ -79,6 +79,7 @@ namespace Zipper_App___Reawote
                         }
                     }
                     MessageBox.Show("Operace dokončena!", "Hotovo");
+                    Application.Restart();
                 }
             }
         }
@@ -235,7 +236,7 @@ namespace Zipper_App___Reawote
             {
                 if (selectedFolderPaths == null || selectedFolderPaths.Count == 0)
                 {
-                    MessageBox.Show("Nebyly vybrány žádné soubory.");
+                    MessageBox.Show("Nebyly vybrány žádné soubory.", "Chyba");
                 }
                 else
                 {
@@ -426,7 +427,7 @@ namespace Zipper_App___Reawote
         {
             if (selectedFolderPaths == null || selectedFolderPaths.Count == 0)
             {
-                MessageBox.Show("Nebyly vybrány žádné soubory.");
+                MessageBox.Show("Nebyly vybrány žádné soubory.", "Chyba");
             }
             else
             {
