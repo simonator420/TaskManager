@@ -477,14 +477,14 @@ namespace Zipper_App___Reawote
                             {
                                 File.Copy(imageFile, destinationPath);
                                 }
-                                if (MessageBox.Show("Operace byla dokončena!", "Hotovo", MessageBoxButtons.OK) == DialogResult.OK)
-                                {
-                                    Application.Exit();
-                                }
                             }                                                    
                         }                       
                     }                       
-                }                   
-            }          
-        }       
-    }    
+                }
+            if (MessageBox.Show("Operace byla dokončena!", "Hotovo", MessageBoxButtons.OK) == DialogResult.OK)
+            {
+                Application.Exit();
+            }
+        }          
+    }       
+}    
