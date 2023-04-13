@@ -479,7 +479,7 @@ namespace Zipper_App___Reawote
                                 }
                                 if (MessageBox.Show("Operace byla dokončena!", "Hotovo", MessageBoxButtons.OK) == DialogResult.OK)
                                 {
-                                    Application.Restart();
+                                    Application.Exit();
                                 }
                             }                                                    
                         }                       
