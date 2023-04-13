@@ -25,7 +25,7 @@ namespace Zipper_App___Reawote
         {
         }
 
-        // vytvoření listu, do kterého se uloží všechny vybrané cesty
+        // vytvoření list, do kterého se uloží všechny vybrané cesty
         private List<string> selectedFolderPaths = new List<string>();
 
         // metoda pro výbrání složek, které se uloží do listu
@@ -60,7 +60,7 @@ namespace Zipper_App___Reawote
                 // vytvoření průzkumníka souborů
                 using (var dialog = new CommonOpenFileDialog())
                 {
-                    dialog.IsFolderPicker= true;
+                    dialog.IsFolderPicker = true;
                     dialog.Multiselect = false;
                     // po stisknutí tlačítka pro potvrzení cesty
                     if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
@@ -103,7 +103,7 @@ namespace Zipper_App___Reawote
             foreach (string subDirPath in Directory.GetDirectories(sourceDirPath))
             {
                 // hledání složky se jménem SOURCE
-                if(new DirectoryInfo (subDirPath).Name == "SOURCE")
+                if (new DirectoryInfo(subDirPath).Name == "SOURCE")
                 {
                     // pokud nějakou najde, tak ji přeskočí a nebude se kopírovat
                     continue;
@@ -113,7 +113,7 @@ namespace Zipper_App___Reawote
                 // vytvoření cílové cesty pro složky
                 string destSubDirPath = Path.Combine(destDirPath, subDirName);
                 // rekurzivni volání funkce sama sebe a opakování procesu pro všechny složky které uloženy v listu
-                CopyDirectory (subDirPath, destSubDirPath);
+                CopyDirectory(subDirPath, destSubDirPath);
             }
         }
 
@@ -447,5 +447,44 @@ namespace Zipper_App___Reawote
             }
         }
 
-    }
-}
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (selectedFolderPaths == null || selectedFolderPaths.Count == 0)
+            {
+                MessageBox.Show("Nebyly vybrány žádné soubory.", "Chyba");
+            }
+            else
+            {
+                var previewName = textBox1.Text;
+                foreach (var folderPath in selectedFolderPaths)
+                {
+                    var imageFiles = Directory.GetFiles(folderPath, "*", SearchOption.AllDirectories)
+                        .Where(file => file.ToLower().EndsWith(".jpg") || file.ToLower().EndsWith(".png"))
+                        .Where(file => Path.GetFileNameWithoutExtension(file).StartsWith(Path.GetFileName(folderPath)))
+                        .ToList();
+                        foreach (var imageFile in imageFiles)
+                        {
+                            var imageName = Path.GetFileNameWithoutExtension(imageFile);
+                            var imageFolder = Directory.GetDirectories(folderPath, imageName, SearchOption.AllDirectories).FirstOrDefault();
+                            if (imageFolder != null)
+                            {
+                            var previewFolder = Path.Combine(imageFolder, "Preview");
+                            Directory.CreateDirectory(previewFolder);
+                            var extension = Path.GetExtension(imageFile).ToLower();
+                            //var destinationPath = Path.Combine(previewFolder, Path.GetFileName(imageFile));
+                            var destinationPath = Path.Combine(previewFolder, previewName + extension);
+                            if (!File.Exists(destinationPath))
+                            {
+                                File.Copy(imageFile, destinationPath);
+                                }
+                                if (MessageBox.Show("Operace byla dokončena!", "Hotovo", MessageBoxButtons.OK) == DialogResult.OK)
+                                {
+                                    Application.Restart();
+                                }
+                            }                                                    
+                        }                       
+                    }                       
+                }                   
+            }          
+        }       
+    }    
