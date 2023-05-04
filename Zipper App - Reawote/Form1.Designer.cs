@@ -377,7 +377,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(386, 956);
+            this.ClientSize = new System.Drawing.Size(386, 962);
             this.Controls.Add(this.selectAllButton);
             this.Controls.Add(this.sheen_cb);
             this.Controls.Add(this.anis_cb);
@@ -406,6 +406,7 @@
             this.Controls.Add(this.vyberButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Zipper App - Reawote";
             this.ResumeLayout(false);
