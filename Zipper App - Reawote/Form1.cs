@@ -1,13 +1,11 @@
-﻿using System;
+﻿using Microsoft.WindowsAPICodePack.Dialogs;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows.Forms;
-using Microsoft.WindowsAPICodePack.Dialogs;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace Zipper_App___Reawote
 {
@@ -19,17 +17,11 @@ namespace Zipper_App___Reawote
             InitializeComponent();
         }
 
-        // načtení okna
-        private void Form1_Load(object sender, EventArgs e)
-
-        {
-        }
-
         // vytvoření list, do kterého se uloží všechny vybrané cesty
         private List<string> selectedFolderPaths = new List<string>();
 
         // metoda pro výbrání složek, které se uloží do listu
-        private void button1_Click_1(object sender, EventArgs e)
+        private void vyberButton_Click(object sender, EventArgs e)
         {
             using (var dialog = new CommonOpenFileDialog())
             {
@@ -48,8 +40,8 @@ namespace Zipper_App___Reawote
             }
         }
 
-        // čudlík, pro vybrání cesty ke zkopírování složek a souborů bez složky SOURCE
-        private void button2_Click(object sender, EventArgs e)
+        // button, pro vybrání cesty ke zkopírování složek a souborů bez složky SOURCE
+        private void presunSlozkuButton_Click(object sender, EventArgs e)
         {
             if (selectedFolderPaths == null || selectedFolderPaths.Count == 0)
             {
@@ -145,9 +137,7 @@ namespace Zipper_App___Reawote
         public static void DeleteFilesFromFolder(string folderPath, string[] fileExtensions)
         {
             // získání listu s námí definovanými koncovkami
-            var filesToDelete = Directory.GetFiles(folderPath)
-                                         .Where(f => fileExtensions.Contains(Path.GetExtension(f),
-                                                                StringComparer.OrdinalIgnoreCase));
+            var filesToDelete = Directory.GetFiles(folderPath).Where(f => fileExtensions.Contains(Path.GetExtension(f), StringComparer.OrdinalIgnoreCase));
 
             // vymaže jednotlivé soubory ze souboru
             foreach (var file in filesToDelete)
@@ -231,7 +221,7 @@ namespace Zipper_App___Reawote
             }
         }
 
-        private void ZAZIPUJ_Click(object sender, EventArgs e)
+        private void zazipujHDRButton_Click(object sender, EventArgs e)
         {
             {
                 if (selectedFolderPaths == null || selectedFolderPaths.Count == 0)
@@ -423,7 +413,7 @@ namespace Zipper_App___Reawote
             }
         }
 
-        private void ZAZIPUJ_HDR_Click(object sender, EventArgs e)
+        private void zazipujModelyButton_Click(object sender, EventArgs e)
         {
             if (selectedFolderPaths == null || selectedFolderPaths.Count == 0)
             {
@@ -439,7 +429,7 @@ namespace Zipper_App___Reawote
             }
         }
 
-        private void EXIT_Click(object sender, EventArgs e)
+        private void exitButton_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Opravdu chceš odejít?", "Exit", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
@@ -447,7 +437,7 @@ namespace Zipper_App___Reawote
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void najdiPreviewButton_Click(object sender, EventArgs e)
         {
             if (selectedFolderPaths == null || selectedFolderPaths.Count == 0)
             {
@@ -455,19 +445,19 @@ namespace Zipper_App___Reawote
             }
             else
             {
-                var previewName = textBox1.Text;
+                var previewName = previewNameBox.Text;
                 foreach (var folderPath in selectedFolderPaths)
                 {
                     var imageFiles = Directory.GetFiles(folderPath, "*", SearchOption.AllDirectories)
                         .Where(file => file.ToLower().EndsWith(".jpg") || file.ToLower().EndsWith(".png"))
                         .Where(file => Path.GetFileNameWithoutExtension(file).StartsWith(Path.GetFileName(folderPath)))
                         .ToList();
-                        foreach (var imageFile in imageFiles)
+                    foreach (var imageFile in imageFiles)
+                    {
+                        var imageName = Path.GetFileNameWithoutExtension(imageFile);
+                        var imageFolder = Directory.GetDirectories(folderPath, imageName, SearchOption.AllDirectories).FirstOrDefault();
+                        if (imageFolder != null)
                         {
-                            var imageName = Path.GetFileNameWithoutExtension(imageFile);
-                            var imageFolder = Directory.GetDirectories(folderPath, imageName, SearchOption.AllDirectories).FirstOrDefault();
-                            if (imageFolder != null)
-                            {
                             var previewFolder = Path.Combine(imageFolder, "Preview");
                             Directory.CreateDirectory(previewFolder);
                             var extension = Path.GetExtension(imageFile).ToLower();
@@ -476,15 +466,174 @@ namespace Zipper_App___Reawote
                             if (!File.Exists(destinationPath))
                             {
                                 File.Copy(imageFile, destinationPath);
-                                }
-                            }                                                    
-                        }                       
-                    }                       
+                            }
+                        }
+                    }
                 }
-            if (MessageBox.Show("Operace byla dokončena!", "Hotovo", MessageBoxButtons.OK) == DialogResult.OK)
-            {
-                Application.Exit();
+
+                if (MessageBox.Show("Operace byla dokončena!", "Hotovo", MessageBoxButtons.OK) == DialogResult.OK)
+                {
+                    Application.Exit();
+                }
             }
-        }          
+        }
+
+        // funkce pro vyhledavani map z cesty a ukladani jich do neove slozky
+        private void najdiMapy(string mapName, List<string> selectedFolderpaths, string destPath)
+        {
+            // projde vsechny vybrane cesty
+            foreach (var folderPath in selectedFolderPaths)
+            {
+                // vyhleda vsechny soubory se zadanym jmenem
+                string[] files = Directory.GetFiles(folderPath, $"*_{mapName}_*", SearchOption.AllDirectories);
+                // projde vsechny nalezene soubory s vybranyn jmenem
+                foreach (string file in files)
+                {
+                    // jmeno souboru
+                    string name = Path.GetFileName(file);
+                    // cesta vybraneho souboru
+                    string destFile = Path.Combine(destPath, name);
+                    // pokud soubor uz neexistuje, tak se nakopiruje do nami vybrane slozky
+                    try
+                    {
+                        File.Copy(file, destFile);
+                    }
+                    catch (IOException)
+                    {
+                        continue;
+                    }
+                }
+            }
+        }
+
+        private void najdiMapyButton_Click(object sender, EventArgs e)
+        {
+            // pokud je vybrana alespon jedna cesta
+            if (selectedFolderPaths == null || selectedFolderPaths.Count == 0)
+            {
+                // tak se zobrazi chybove hlaseni
+                MessageBox.Show("Nebyly vybrány žádné soubory.", "Chyba");
+            }
+            // pokud neni vybran ani jeden checkbox
+            else if ( !ao_cb.Checked && !nrm_cb.Checked && !disp_cb.Checked && !diff_cb.Checked && !col_cb.Checked && !gloss_cb.Checked && !metal_cb.Checked && !spec_cb.Checked && !sss_cb.Checked && !sssabsorb_cb.Checked && !opac_cb.Checked && !anis_cb.Checked && !sheen_cb.Checked)
+            {
+                // tak se zobrazi chybove hlaseni
+                MessageBox.Show("Nebyly vybrány žádné mapy.", "Chyba");
+            }
+            else
+            {
+                // vytvoření dialogového ok
+                using (var dialog = new CommonOpenFileDialog("Vyber cílovou složku"))
+                {
+                    dialog.IsFolderPicker = true;
+                    dialog.Multiselect = false;
+                    // po stisknutí tlačítka pro potvrzení cesty
+                    if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+                    {
+                        // ulozeni cesty do promenne
+                        string destPath = dialog.FileName;
+                        // projde vsechny vybrane cesty
+                        foreach (var folderPath in selectedFolderPaths)
+                        {
+                            // zkontroluje vsechny checkboxy a provede operaci
+                            if (ao_cb.Checked)
+                            {
+                                najdiMapy("AO", selectedFolderPaths, destPath);
+                            }
+
+                            if (nrm_cb.Checked)
+                            {
+                                najdiMapy("NRM", selectedFolderPaths, destPath);
+                            }
+                            if (disp_cb.Checked)
+                            {
+                                najdiMapy("DISP", selectedFolderPaths, destPath);
+                            }
+                            if (diff_cb.Checked)
+                            {
+                                najdiMapy("DIFF", selectedFolderPaths, destPath);
+                            }
+                            if (col_cb.Checked)
+                            {
+                                najdiMapy("COL", selectedFolderPaths, destPath);
+                            }
+                            if (gloss_cb.Checked)
+                            {
+                                najdiMapy("GLOSS", selectedFolderPaths, destPath);
+                            }
+                            if (metal_cb.Checked)
+                            {
+                                najdiMapy("METAL", selectedFolderPaths, destPath);
+                            }
+                            if (spec_cb.Checked)
+                            {
+                                najdiMapy("SPEC", selectedFolderPaths, destPath);
+                            }
+                            if (sss_cb.Checked)
+                            {
+                                najdiMapy("SSS", selectedFolderPaths, destPath);
+                            }
+                            if (sssabsorb_cb.Checked)
+                            {
+                                najdiMapy("SSSABSORB", selectedFolderPaths, destPath);
+                            }
+                            if (opac_cb.Checked)
+                            {
+                                najdiMapy("OPAC", selectedFolderPaths, destPath);
+                            }
+                            if (anis_cb.Checked)
+                            {
+                                najdiMapy("ANIS", selectedFolderPaths, destPath);
+                            }
+                            if (sheen_cb.Checked)
+                            {
+                                najdiMapy("SHEEN", selectedFolderPaths, destPath);
+                            }
+                        }
+                        if (MessageBox.Show("Operace byla dokončena!", "Hotovo", MessageBoxButtons.OK) == DialogResult.OK)
+                        {
+                            Application.Restart();
+                        }
+                    }
+                }
+            }
+        }
+
+        // button pro zaskrtnuti vsech checkboxu
+        private void selectAllButton_Click(object sender, EventArgs e)
+        {
+            if (!ao_cb.Checked && !nrm_cb.Checked && !disp_cb.Checked && !diff_cb.Checked && !col_cb.Checked && !gloss_cb.Checked && !metal_cb.Checked && !spec_cb.Checked && !sss_cb.Checked && !sssabsorb_cb.Checked && !opac_cb.Checked && !anis_cb.Checked && !sheen_cb.Checked)
+            {
+                ao_cb.Checked = true;
+                nrm_cb.Checked = true;
+                disp_cb.Checked = true;
+                diff_cb.Checked = true;
+                col_cb.Checked = true;
+                gloss_cb.Checked = true;
+                metal_cb.Checked = true;
+                spec_cb.Checked = true;
+                sss_cb.Checked = true;
+                sssabsorb_cb.Checked = true;
+                opac_cb.Checked = true;
+                anis_cb.Checked = true;
+                sheen_cb.Checked = true;
+            }
+            else
+            {
+                ao_cb.Checked = false;
+                nrm_cb.Checked = false;
+                disp_cb.Checked = false;
+                diff_cb.Checked = false;
+                col_cb.Checked = false;
+                gloss_cb.Checked = false;
+                metal_cb.Checked = false;
+                spec_cb.Checked = false;
+                sss_cb.Checked = false;
+                sssabsorb_cb.Checked = false;
+                opac_cb.Checked = false;
+                anis_cb.Checked = false;
+                sheen_cb.Checked = false;
+            }
+        }
     }       
 }    

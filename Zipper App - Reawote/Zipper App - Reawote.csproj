@@ -42,8 +42,20 @@
     <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\WindowsAPICodePack-Core.1.1.2\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WindowsAPICodePack-Shell.1.1.1\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    <Reference Include="Microsoft.WindowsAPICodePack.Core, Version=7.0.4.0, Culture=neutral, PublicKeyToken=8afb38e9204fc0a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack.7.0.4\lib\net472\Microsoft.WindowsAPICodePack.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.ExtendedLinguisticServices, Version=7.0.4.0, Culture=neutral, PublicKeyToken=8afb38e9204fc0a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack.7.0.4\lib\net472\Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Sensors, Version=7.0.4.0, Culture=neutral, PublicKeyToken=8afb38e9204fc0a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack.7.0.4\lib\net472\Microsoft.WindowsAPICodePack.Sensors.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=7.0.4.0, Culture=neutral, PublicKeyToken=8afb38e9204fc0a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack.7.0.4\lib\net472\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.ShellExtensions, Version=7.0.4.0, Culture=neutral, PublicKeyToken=8afb38e9204fc0a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack.7.0.4\lib\net472\Microsoft.WindowsAPICodePack.ShellExtensions.dll</HintPath>
     </Reference>
     <Reference Include="Ookii.Dialogs.WinForms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=66aa232afad40158, processorArchitecture=MSIL">
       <HintPath>..\packages\Ookii.Dialogs.WinForms.4.0.0\lib\net462\Ookii.Dialogs.WinForms.dll</HintPath>
@@ -57,8 +69,14 @@
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
       <Private>True</Private>
@@ -73,6 +91,11 @@
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
@@ -80,20 +103,64 @@
     <Reference Include="System.Resources.Extensions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Resources.Extensions.6.0.0\lib\net461\System.Resources.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack.7.0.4\lib\net472\System.Windows.Forms.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WinCopies.Util, Version=2.19.0.0, Culture=neutral, PublicKeyToken=cb02bf7a62cec965, processorArchitecture=MSIL">
+      <HintPath>..\packages\WinCopies.Util.2.19.0\lib\net472\WinCopies.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="WinCopies.WindowsAPICodePack, Version=2.12.0.0, Culture=neutral, PublicKeyToken=7cede2e7a545acde, processorArchitecture=MSIL">
+      <HintPath>..\packages\WinCopies.WindowsAPICodePack.2.12.0\lib\net472\WinCopies.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="WinCopies.WindowsAPICodePack.COMNative, Version=2.12.0.0, Culture=neutral, PublicKeyToken=ecca801a1abe31d1, processorArchitecture=MSIL">
+      <HintPath>..\packages\WinCopies.WindowsAPICodePack.COMNative.2.12.0\lib\net472\WinCopies.WindowsAPICodePack.COMNative.dll</HintPath>
+    </Reference>
+    <Reference Include="WinCopies.WindowsAPICodePack.Consts, Version=2.12.0.0, Culture=neutral, PublicKeyToken=49443f23c9a81e6e, processorArchitecture=MSIL">
+      <HintPath>..\packages\WinCopies.WindowsAPICodePack.Consts.2.12.0\lib\net472\WinCopies.WindowsAPICodePack.Consts.dll</HintPath>
+    </Reference>
+    <Reference Include="WinCopies.WindowsAPICodePack.Win32Native, Version=2.12.0.0, Culture=neutral, PublicKeyToken=ac0f4cf54a027a4d, processorArchitecture=MSIL">
+      <HintPath>..\packages\WinCopies.WindowsAPICodePack.Win32Native.2.12.0\lib\net472\WinCopies.WindowsAPICodePack.Win32Native.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack.7.0.4\lib\net472\WindowsFormsIntegration.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Form1.cs">
