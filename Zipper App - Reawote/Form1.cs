@@ -485,7 +485,7 @@ namespace Zipper_App___Reawote
             foreach (var folderPath in selectedFolderPaths)
             {
                 // vyhleda vsechny soubory se zadanym jmenem
-                string[] files = Directory.GetFiles(folderPath, $"*_{mapName}_*", SearchOption.AllDirectories);
+                string[] files = Directory.GetFiles(folderPath, $"*_{mapName}_*.jpg", SearchOption.AllDirectories);
                 // projde vsechny nalezene soubory s vybranyn jmenem
                 foreach (string file in files)
                 {
