@@ -6,6 +6,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace Zipper_App___Reawote
 {
@@ -634,6 +635,58 @@ namespace Zipper_App___Reawote
                 anis_cb.Checked = false;
                 sheen_cb.Checked = false;
             }
+        }
+
+        // funkce pro otočení všech vybraných bitmap
+        // není potřeba klikat na vyber, ale soubory se použijí z dialogu, který se otevře po stisknutí tlačítka.
+        private void RotateImages(RotateFlipType rotateType)
+        {
+            using (var dialog = new CommonOpenFileDialog())
+            {
+                dialog.IsFolderPicker = false;
+                dialog.Multiselect = true;
+
+                if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+                {
+                    selectedFolderPaths.Clear();
+                    selectedFolderPaths.AddRange(dialog.FileNames);
+                    listBox1.Items.Clear();
+                    listBox1.Items.AddRange(selectedFolderPaths.ToArray());
+
+                    foreach (var bitmapPath in selectedFolderPaths)
+                    {
+                        using (Bitmap originalBitmap = new Bitmap(bitmapPath))
+                        {
+                            originalBitmap.RotateFlip(rotateType);
+                            originalBitmap.Save(bitmapPath);
+                        }
+                    }
+                    MessageBox.Show("Soubory byly úspěšně otočeny.", "Hotovo");
+                }
+                else
+                {
+                    MessageBox.Show("Nebyly vybrány žádné soubory.", "Chyba");
+                }
+            }
+        }
+
+        private void otocDolevaButton_Click(object sender, EventArgs e)
+        {
+            RotateImages(RotateFlipType.Rotate270FlipNone);
+        }
+
+        private void otocDopravaButton_Click(object sender, EventArgs e)
+        {
+            RotateImages(RotateFlipType.Rotate90FlipNone);
+        }
+
+        private void rotateHelp_Click(object sender, EventArgs e)
+        {
+            string message = "1. Klikni na OTOČ DOPRAVA/DOLEVA (není třeba klikat na VYBER nahoře).\n" +
+                     "2. Vyber všechny soubory, které chceš otočit.\n" +
+                     "3. Klikni na Otevřít";
+
+            MessageBox.Show(message, "Help");
         }
     }       
 }    
