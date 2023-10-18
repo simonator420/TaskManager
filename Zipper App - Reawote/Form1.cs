@@ -20,7 +20,7 @@ namespace Zipper_App___Reawote
         }
 
         // vytvoření list, do kterého se uloží všechny vybrané cesty
-        private List<string> selectedFolderPaths = new List<string>();
+        public static List<string> selectedFolderPaths = new List<string>();
 
         // metoda pro výbrání složek, které se uloží do listu
         private void vyberButton_Click(object sender, EventArgs e)

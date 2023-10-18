@@ -14,7 +14,7 @@ namespace Zipper_App___Reawote
 {
     public partial class CheckboxForm : Form
     {
-        Form1 form1 = new Form1();
+        Form1 f = new Form1();
 
         public CheckboxForm()
         {
@@ -34,13 +34,14 @@ namespace Zipper_App___Reawote
         private void prevedDoJPG_Click(object sender, EventArgs e)
         {
             List<string> checkedPaths = new List<string>();
-            List<string> selectedFolderPaths = form1.getSelectedFolderPaths();
+            List<string> selectedFolderPaths = f.getSelectedFolderPaths();
+
 
             Console.WriteLine("Tohle je pocet " + checkedListBox1.Items.Count);
 
             foreach (var item in selectedFolderPaths)
             {
-                Console.WriteLine("Tohle je item z selectedFolderPaths: " + item);
+                Console.WriteLine("Tohle je item z checkedPaths: " + item);
             }
 
             for (int i = 0; i < checkedListBox1.Items.Count; i++)
