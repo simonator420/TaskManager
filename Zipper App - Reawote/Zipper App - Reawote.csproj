@@ -36,6 +36,9 @@
     <ApplicationIcon>unnamed.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FreeImage-dotnet-core, Version=4.3.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FreeImage-dotnet-core.4.3.6\lib\net461\FreeImage-dotnet-core.dll</HintPath>
+    </Reference>
     <Reference Include="FSharpFilePathUtils, Version=0.2.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FSharp.FilePath.Utils.0.2.1\lib\net45\FSharpFilePathUtils.dll</HintPath>
     </Reference>
@@ -163,6 +166,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckedListBoxItem.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
