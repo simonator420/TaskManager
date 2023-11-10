@@ -92,7 +92,11 @@ namespace Zipper_App___Reawote
                                     string jpgFile = Path.ChangeExtension(pngFile, ".jpg");
                                     using (Image image = Image.FromFile(pngFile))
                                     {
-                                        image.Save(jpgFile);
+                                        var encoder = ImageCodecInfo.GetImageEncoders().First(c => c.FormatID == ImageFormat.Jpeg.Guid);
+                                        var parameters = new EncoderParameters(1);
+                                        parameters.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.ColorDepth, 24L);
+
+                                        image.Save(jpgFile, encoder, parameters);
                                     }
                                     File.Delete(pngFile);
                                 }
