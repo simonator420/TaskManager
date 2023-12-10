@@ -780,6 +780,111 @@ namespace Zipper_App___Reawote
         {
             return selectedFolderPaths;
         }
-        
-    }       
+
+        private void zkopirujMapyButton_Click(object sender, EventArgs e)
+        {
+            if (selectedFolderPaths == null || selectedFolderPaths.Count == 0)
+            {
+                MessageBox.Show("Nebyly vybrány žádné soubory.", "Chyba");
+                return;
+            }
+
+            if (!ao_cb.Checked && !nrm_cb.Checked && !disp_cb.Checked && !diff_cb.Checked && // ... other checks
+                !spec_cb.Checked && !sss_cb.Checked && !sssabsorb_cb.Checked &&
+                !opac_cb.Checked && !anis_cb.Checked && !sheen_cb.Checked)
+            {
+                MessageBox.Show("Nebyly vybrány žádné mapy.", "Chyba");
+                return;
+            }
+
+            string sourceResolutionFolder = FindResolutionFolder(selectedFolderPaths[0]);
+            if (string.IsNullOrEmpty(sourceResolutionFolder))
+            {
+                MessageBox.Show("Složka s rozlišením nebyla nalezena.", "Chyba");
+                return;
+            }
+
+            List<string> filesToCopy = FindFilesBasedOnCheckbox(sourceResolutionFolder);
+
+            using (var dialog = new CommonOpenFileDialog())
+            {
+                dialog.IsFolderPicker = true;
+                dialog.Multiselect = true;
+
+                if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+                {
+                    foreach (var folder in dialog.FileNames)
+                    {
+                        string destinationFolderPath = folder;
+                        string destinationResolutionFolder = FindOrCreateResolutionFolder(destinationFolderPath, sourceResolutionFolder);
+                        string folderName = new DirectoryInfo(folder).Name;
+
+                        foreach (var file in filesToCopy)
+                        {
+                            string newFileName = CreateNewFileName(file, folderName);
+                            string destFile = Path.Combine(destinationResolutionFolder, newFileName);
+                            File.Copy(file, destFile, overwrite: true); // Set overwrite based on your requirements
+                        }
+                    }
+
+                    MessageBox.Show("Soubory byly úspěšně zkopírovány.", "Úspěch");
+                }
+            }
+        }
+
+
+        private string FindResolutionFolder(string basePath)
+        {
+            var directories = Directory.GetDirectories(basePath);
+            return directories.FirstOrDefault(dir => dir.EndsWith("K"));
+        }
+
+        private List<string> FindFilesBasedOnCheckbox(string folderPath)
+        {
+            var files = Directory.GetFiles(folderPath);
+            List<string> selectedFiles = new List<string>();
+
+            foreach (var file in files)
+            {
+                var parts = Path.GetFileName(file).Split('_');
+                if (parts.Length < 4) continue;
+
+                string tag = parts[3];
+                if ((ao_cb.Checked && tag == "AO") ||
+                    (nrm_cb.Checked && tag == "NRM") ||
+                    (disp_cb.Checked && tag == "DISP") ||
+                    // ... other checks
+                    (sheen_cb.Checked && tag == "SHEEN"))
+                {
+                    selectedFiles.Add(file);
+                }
+            }
+
+            return selectedFiles;
+        }
+
+        private string FindOrCreateResolutionFolder(string basePath, string sourceResolutionFolder)
+        {
+            string resolutionFolderName = Path.GetFileName(sourceResolutionFolder);
+            string destinationResolutionFolder = Path.Combine(basePath, resolutionFolderName);
+
+            if (!Directory.Exists(destinationResolutionFolder))
+            {
+                Directory.CreateDirectory(destinationResolutionFolder);
+            }
+
+            return destinationResolutionFolder;
+        }
+
+        private string CreateNewFileName(string originalFilePath, string folderName)
+        {
+            // Extracting the specific part of the file name (e.g., "AO_4K.jpg")
+            string extension = Path.GetExtension(originalFilePath);
+            string[] parts = Path.GetFileNameWithoutExtension(originalFilePath).Split('_');
+            string mapType = parts.Length >= 3 ? parts[parts.Length - 2] + "_" + parts[parts.Length - 1] : "";
+
+            // Constructing the new file name
+            return $"{folderName}_{mapType}{extension}";
+        }
+    }
 }    

@@ -61,6 +61,7 @@
             this.vygenerujCheckboxyButton = new System.Windows.Forms.Button();
             this.convertHelp = new System.Windows.Forms.Button();
             this.vistaFolderBrowserDialog1 = new Ookii.Dialogs.WinForms.VistaFolderBrowserDialog();
+            this.zkopirujMapyButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // vyberButton
@@ -200,7 +201,7 @@
             this.nrm_cb.AutoSize = true;
             this.nrm_cb.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nrm_cb.ForeColor = System.Drawing.Color.White;
-            this.nrm_cb.Location = new System.Drawing.Point(91, 529);
+            this.nrm_cb.Location = new System.Drawing.Point(91, 572);
             this.nrm_cb.Name = "nrm_cb";
             this.nrm_cb.Size = new System.Drawing.Size(147, 21);
             this.nrm_cb.TabIndex = 12;
@@ -213,7 +214,7 @@
             this.ao_cb.BackColor = System.Drawing.Color.Black;
             this.ao_cb.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ao_cb.ForeColor = System.Drawing.Color.White;
-            this.ao_cb.Location = new System.Drawing.Point(91, 506);
+            this.ao_cb.Location = new System.Drawing.Point(91, 549);
             this.ao_cb.Name = "ao_cb";
             this.ao_cb.Size = new System.Drawing.Size(170, 21);
             this.ao_cb.TabIndex = 13;
@@ -225,7 +226,7 @@
             this.disp_cb.AutoSize = true;
             this.disp_cb.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.disp_cb.ForeColor = System.Drawing.Color.White;
-            this.disp_cb.Location = new System.Drawing.Point(91, 552);
+            this.disp_cb.Location = new System.Drawing.Point(91, 595);
             this.disp_cb.Name = "disp_cb";
             this.disp_cb.Size = new System.Drawing.Size(153, 21);
             this.disp_cb.TabIndex = 14;
@@ -237,7 +238,7 @@
             this.diff_cb.AutoSize = true;
             this.diff_cb.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.diff_cb.ForeColor = System.Drawing.Color.White;
-            this.diff_cb.Location = new System.Drawing.Point(91, 575);
+            this.diff_cb.Location = new System.Drawing.Point(91, 618);
             this.diff_cb.Name = "diff_cb";
             this.diff_cb.Size = new System.Drawing.Size(113, 21);
             this.diff_cb.TabIndex = 15;
@@ -249,7 +250,7 @@
             this.col_cb.AutoSize = true;
             this.col_cb.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.col_cb.ForeColor = System.Drawing.Color.White;
-            this.col_cb.Location = new System.Drawing.Point(91, 598);
+            this.col_cb.Location = new System.Drawing.Point(91, 641);
             this.col_cb.Name = "col_cb";
             this.col_cb.Size = new System.Drawing.Size(98, 21);
             this.col_cb.TabIndex = 16;
@@ -261,7 +262,7 @@
             this.gloss_cb.AutoSize = true;
             this.gloss_cb.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gloss_cb.ForeColor = System.Drawing.Color.White;
-            this.gloss_cb.Location = new System.Drawing.Point(91, 621);
+            this.gloss_cb.Location = new System.Drawing.Point(91, 664);
             this.gloss_cb.Name = "gloss_cb";
             this.gloss_cb.Size = new System.Drawing.Size(144, 21);
             this.gloss_cb.TabIndex = 17;
@@ -284,7 +285,7 @@
             this.metal_cb.AutoSize = true;
             this.metal_cb.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.metal_cb.ForeColor = System.Drawing.Color.White;
-            this.metal_cb.Location = new System.Drawing.Point(91, 643);
+            this.metal_cb.Location = new System.Drawing.Point(91, 686);
             this.metal_cb.Name = "metal_cb";
             this.metal_cb.Size = new System.Drawing.Size(132, 21);
             this.metal_cb.TabIndex = 19;
@@ -296,7 +297,7 @@
             this.sheen_cb.AutoSize = true;
             this.sheen_cb.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sheen_cb.ForeColor = System.Drawing.Color.White;
-            this.sheen_cb.Location = new System.Drawing.Point(91, 782);
+            this.sheen_cb.Location = new System.Drawing.Point(91, 825);
             this.sheen_cb.Name = "sheen_cb";
             this.sheen_cb.Size = new System.Drawing.Size(118, 21);
             this.sheen_cb.TabIndex = 25;
@@ -308,7 +309,7 @@
             this.anis_cb.AutoSize = true;
             this.anis_cb.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.anis_cb.ForeColor = System.Drawing.Color.White;
-            this.anis_cb.Location = new System.Drawing.Point(91, 759);
+            this.anis_cb.Location = new System.Drawing.Point(91, 802);
             this.anis_cb.Name = "anis_cb";
             this.anis_cb.Size = new System.Drawing.Size(143, 21);
             this.anis_cb.TabIndex = 24;
@@ -320,7 +321,7 @@
             this.opac_cb.AutoSize = true;
             this.opac_cb.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.opac_cb.ForeColor = System.Drawing.Color.White;
-            this.opac_cb.Location = new System.Drawing.Point(91, 736);
+            this.opac_cb.Location = new System.Drawing.Point(91, 779);
             this.opac_cb.Name = "opac_cb";
             this.opac_cb.Size = new System.Drawing.Size(122, 21);
             this.opac_cb.TabIndex = 23;
@@ -332,7 +333,7 @@
             this.sssabsorb_cb.AutoSize = true;
             this.sssabsorb_cb.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sssabsorb_cb.ForeColor = System.Drawing.Color.White;
-            this.sssabsorb_cb.Location = new System.Drawing.Point(91, 713);
+            this.sssabsorb_cb.Location = new System.Drawing.Point(91, 756);
             this.sssabsorb_cb.Name = "sssabsorb_cb";
             this.sssabsorb_cb.Size = new System.Drawing.Size(205, 21);
             this.sssabsorb_cb.TabIndex = 22;
@@ -345,7 +346,7 @@
             this.spec_cb.BackColor = System.Drawing.Color.Black;
             this.spec_cb.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spec_cb.ForeColor = System.Drawing.Color.White;
-            this.spec_cb.Location = new System.Drawing.Point(91, 667);
+            this.spec_cb.Location = new System.Drawing.Point(91, 710);
             this.spec_cb.Name = "spec_cb";
             this.spec_cb.Size = new System.Drawing.Size(122, 21);
             this.spec_cb.TabIndex = 21;
@@ -357,7 +358,7 @@
             this.sss_cb.AutoSize = true;
             this.sss_cb.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sss_cb.ForeColor = System.Drawing.Color.White;
-            this.sss_cb.Location = new System.Drawing.Point(91, 690);
+            this.sss_cb.Location = new System.Drawing.Point(91, 733);
             this.sss_cb.Name = "sss_cb";
             this.sss_cb.Size = new System.Drawing.Size(194, 21);
             this.sss_cb.TabIndex = 20;
@@ -369,7 +370,7 @@
             this.selectAllButton.BackColor = System.Drawing.Color.Black;
             this.selectAllButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.selectAllButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.selectAllButton.Location = new System.Drawing.Point(91, 809);
+            this.selectAllButton.Location = new System.Drawing.Point(91, 852);
             this.selectAllButton.Name = "selectAllButton";
             this.selectAllButton.Size = new System.Drawing.Size(77, 28);
             this.selectAllButton.TabIndex = 26;
@@ -442,13 +443,27 @@
             this.convertHelp.UseVisualStyleBackColor = false;
             this.convertHelp.Click += new System.EventHandler(this.convertHelp_Click);
             // 
+            // zkopirujMapyButton
+            // 
+            this.zkopirujMapyButton.BackColor = System.Drawing.Color.Black;
+            this.zkopirujMapyButton.Font = new System.Drawing.Font("Microsoft PhagsPa", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.zkopirujMapyButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.zkopirujMapyButton.Location = new System.Drawing.Point(91, 506);
+            this.zkopirujMapyButton.Name = "zkopirujMapyButton";
+            this.zkopirujMapyButton.Size = new System.Drawing.Size(187, 36);
+            this.zkopirujMapyButton.TabIndex = 34;
+            this.zkopirujMapyButton.Text = "ZKOPÍRUJ MAPY";
+            this.zkopirujMapyButton.UseVisualStyleBackColor = false;
+            this.zkopirujMapyButton.Click += new System.EventHandler(this.zkopirujMapyButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(386, 855);
+            this.ClientSize = new System.Drawing.Size(386, 917);
+            this.Controls.Add(this.zkopirujMapyButton);
             this.Controls.Add(this.convertHelp);
             this.Controls.Add(this.vygenerujCheckboxyButton);
             this.Controls.Add(this.rotateHelp);
@@ -524,6 +539,7 @@
         private System.Windows.Forms.Button vygenerujCheckboxyButton;
         private System.Windows.Forms.Button convertHelp;
         private Ookii.Dialogs.WinForms.VistaFolderBrowserDialog vistaFolderBrowserDialog1;
+        private System.Windows.Forms.Button zkopirujMapyButton;
     }
 }
 
