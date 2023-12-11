@@ -619,6 +619,7 @@ namespace Zipper_App___Reawote
                 opac_cb.Checked = true;
                 anis_cb.Checked = true;
                 sheen_cb.Checked = true;
+                rough_cb.Checked = true;
             }
             else
             {
@@ -851,9 +852,17 @@ namespace Zipper_App___Reawote
 
                 string tag = parts[3];
                 if ((ao_cb.Checked && tag == "AO") ||
-                    (nrm_cb.Checked && tag == "NRM") ||
-                    (disp_cb.Checked && tag == "DISP") ||
-                    // ... other checks
+                    (nrm_cb.Checked && (tag == "NRM" || tag == "NRM16")) ||
+                    (disp_cb.Checked && (tag == "DISP" || tag == "DISP16")) ||
+                    (rough_cb.Checked && tag == "ROUGH") ||
+                    (diff_cb.Checked && tag == "DIFF") ||
+                    (gloss_cb.Checked && tag == "GLOSS") ||
+                    (metal_cb.Checked && tag == "METAL") ||
+                    (spec_cb.Checked && tag == "SPEC") ||
+                    (sss_cb.Checked && tag == "SSS") ||
+                    (sssabsorb_cb.Checked && tag == "SSSABSORB") ||
+                    (opac_cb.Checked && tag == "OPAC") ||
+                    (anis_cb.Checked && tag == "ANIS") ||
                     (sheen_cb.Checked && tag == "SHEEN"))
                 {
                     selectedFiles.Add(file);
@@ -878,13 +887,32 @@ namespace Zipper_App___Reawote
 
         private string CreateNewFileName(string originalFilePath, string folderName)
         {
-            // Extracting the specific part of the file name (e.g., "AO_4K.jpg")
+            // Extracting the file extension (e.g., ".jpg")
             string extension = Path.GetExtension(originalFilePath);
+
+            // Splitting the original file name into parts
             string[] parts = Path.GetFileNameWithoutExtension(originalFilePath).Split('_');
-            string mapType = parts.Length >= 3 ? parts[parts.Length - 2] + "_" + parts[parts.Length - 1] : "";
+
+            // Extracting the map type (assuming it is the last two parts of the file name)
+            string mapType = parts.Length >= 2 ? parts[parts.Length - 2] + "_" + parts[parts.Length - 1] : "";
+
+            // Modifying the folder name to remove everything after the last underscore
+            int lastIndex = folderName.LastIndexOf('_');
+            string modifiedFolderName = lastIndex > 0 ? folderName.Substring(0, lastIndex) : folderName;
 
             // Constructing the new file name
-            return $"{folderName}_{mapType}{extension}";
+            return $"{modifiedFolderName}_{mapType}{extension}";
+        }
+
+
+
+        private void zkopirujMapyHelp_Click(object sender, EventArgs e)
+        {
+            string message = "1. Pomocí tlačítka VYBER zvol zdrojovou složku, ze které se bude kopírovat.\n" +
+                     "2. Pomocí checkboxů vyber mapy, které chceš, aby se zkopírovaly.\n" +
+                     "3. Klikni na ZKOPÍRUJ MAPY a vyber složky, do kterých chceš mapy zkopírovat.\n";
+
+            MessageBox.Show(message, "Help");
         }
     }
 }    

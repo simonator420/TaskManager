@@ -62,6 +62,8 @@
             this.convertHelp = new System.Windows.Forms.Button();
             this.vistaFolderBrowserDialog1 = new Ookii.Dialogs.WinForms.VistaFolderBrowserDialog();
             this.zkopirujMapyButton = new System.Windows.Forms.Button();
+            this.zkopirujMapyHelp = new System.Windows.Forms.Button();
+            this.rough_cb = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // vyberButton
@@ -96,7 +98,7 @@
             this.exitButton.BackColor = System.Drawing.Color.Black;
             this.exitButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exitButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.exitButton.Location = new System.Drawing.Point(318, 809);
+            this.exitButton.Location = new System.Drawing.Point(318, 877);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(49, 28);
             this.exitButton.TabIndex = 3;
@@ -177,7 +179,7 @@
             this.najdiMapyButton.BackColor = System.Drawing.Color.Black;
             this.najdiMapyButton.Font = new System.Drawing.Font("Microsoft PhagsPa", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.najdiMapyButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.najdiMapyButton.Location = new System.Drawing.Point(91, 464);
+            this.najdiMapyButton.Location = new System.Drawing.Point(91, 506);
             this.najdiMapyButton.Name = "najdiMapyButton";
             this.najdiMapyButton.Size = new System.Drawing.Size(187, 36);
             this.najdiMapyButton.TabIndex = 10;
@@ -370,7 +372,7 @@
             this.selectAllButton.BackColor = System.Drawing.Color.Black;
             this.selectAllButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.selectAllButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.selectAllButton.Location = new System.Drawing.Point(91, 852);
+            this.selectAllButton.Location = new System.Drawing.Point(91, 877);
             this.selectAllButton.Name = "selectAllButton";
             this.selectAllButton.Size = new System.Drawing.Size(77, 28);
             this.selectAllButton.TabIndex = 26;
@@ -448,7 +450,7 @@
             this.zkopirujMapyButton.BackColor = System.Drawing.Color.Black;
             this.zkopirujMapyButton.Font = new System.Drawing.Font("Microsoft PhagsPa", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.zkopirujMapyButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.zkopirujMapyButton.Location = new System.Drawing.Point(91, 506);
+            this.zkopirujMapyButton.Location = new System.Drawing.Point(91, 464);
             this.zkopirujMapyButton.Name = "zkopirujMapyButton";
             this.zkopirujMapyButton.Size = new System.Drawing.Size(187, 36);
             this.zkopirujMapyButton.TabIndex = 34;
@@ -456,13 +458,40 @@
             this.zkopirujMapyButton.UseVisualStyleBackColor = false;
             this.zkopirujMapyButton.Click += new System.EventHandler(this.zkopirujMapyButton_Click);
             // 
+            // zkopirujMapyHelp
+            // 
+            this.zkopirujMapyHelp.BackColor = System.Drawing.Color.Black;
+            this.zkopirujMapyHelp.Font = new System.Drawing.Font("Microsoft PhagsPa", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.zkopirujMapyHelp.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.zkopirujMapyHelp.Location = new System.Drawing.Point(281, 468);
+            this.zkopirujMapyHelp.Name = "zkopirujMapyHelp";
+            this.zkopirujMapyHelp.Size = new System.Drawing.Size(28, 30);
+            this.zkopirujMapyHelp.TabIndex = 35;
+            this.zkopirujMapyHelp.Text = "?";
+            this.zkopirujMapyHelp.UseVisualStyleBackColor = false;
+            this.zkopirujMapyHelp.Click += new System.EventHandler(this.zkopirujMapyHelp_Click);
+            // 
+            // rough_cb
+            // 
+            this.rough_cb.AutoSize = true;
+            this.rough_cb.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rough_cb.ForeColor = System.Drawing.Color.White;
+            this.rough_cb.Location = new System.Drawing.Point(91, 850);
+            this.rough_cb.Name = "rough_cb";
+            this.rough_cb.Size = new System.Drawing.Size(153, 21);
+            this.rough_cb.TabIndex = 36;
+            this.rough_cb.Text = "ROUGH - Roughness";
+            this.rough_cb.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(386, 917);
+            this.ClientSize = new System.Drawing.Size(386, 928);
+            this.Controls.Add(this.rough_cb);
+            this.Controls.Add(this.zkopirujMapyHelp);
             this.Controls.Add(this.zkopirujMapyButton);
             this.Controls.Add(this.convertHelp);
             this.Controls.Add(this.vygenerujCheckboxyButton);
@@ -540,6 +569,8 @@
         private System.Windows.Forms.Button convertHelp;
         private Ookii.Dialogs.WinForms.VistaFolderBrowserDialog vistaFolderBrowserDialog1;
         private System.Windows.Forms.Button zkopirujMapyButton;
+        private System.Windows.Forms.Button zkopirujMapyHelp;
+        private System.Windows.Forms.CheckBox rough_cb;
     }
 }
 
